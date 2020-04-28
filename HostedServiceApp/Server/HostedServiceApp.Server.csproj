@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="3.2.0-preview5.20216.8" />
+        <PackageReference Include="Grpc.AspNetCore" Version="2.28.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\Client\HostedServiceApp.Client.csproj" />
+        <ProjectReference Include="..\Shared\HostedServiceApp.Shared.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Protobuf Include="..\..\Protos\report.proto" GrpcServices="Server">
+        <Link>Protos\report.proto</Link>
+      </Protobuf>
+    </ItemGroup>
+</Project>

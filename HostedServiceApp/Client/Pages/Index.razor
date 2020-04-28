@@ -1,0 +1,36 @@
+﻿@page "/"
+
+<h1>HostedService - Monitor</h1>
+
+<div>
+    @foreach (var service in _servicesStatus)
+    {
+        <div class="form-row">
+            <div class="alert @service.Value.Style" role="alert">
+                @service.Key: @service.Value.Status
+
+                @switch (service.Value.Status)
+                {
+                    case Models.Status.Started:
+                    case Models.Status.Running:
+                        <button class="btn btn-primary btn-sm ml-sm-1" data-toggle="tooltip" title="Stop"><span class="oi oi-media-stop"></span></button>
+                        <button class="btn btn-primary btn-sm ml-sm-1" data-toggle="tooltip" title="Restart"><span class="oi oi-reload"></span></button>
+                        break;
+                    case Models.Status.Unknown:
+                    default:
+                        <button class="btn btn-primary btn-sm ml-sm-1" data-toggle="tooltip" title="Start"><span class="oi oi-media-play"></span></button>
+                        break;
+                }
+            </div>
+        </div>
+    }
+</div>
+
+<div class="overflow-auto">
+    <ul id="messagesList">
+        @foreach (var message in _messages)
+        {
+            <li>@message</li>
+        }
+    </ul>
+</div>

@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+option csharp_namespace = "HostedService";
+
+package HostedService;
+
+service Report {
+    rpc Update(UpdateRequest) returns(UpdateResponse);
+}
+
+message UpdateRequest {
+    enum Status{
+        UNKNOWN = 0;
+        STARTED = 1;
+        RUNNING = 2;
+    }
+    string id = 1;
+    string message = 2;
+    Status status = 3;
+}
+
+message UpdateResponse {
+    string status = 1;
+}
